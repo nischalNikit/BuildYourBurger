@@ -1,0 +1,22 @@
+.OrderSummary{
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+
+.OrderPrice{
+    font-size: 1.75rem;
+}
+
+.OrderSummary h3 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.OrderSummary p {
+    margin-bottom: 5px;
+}
+
+.OrderSummary ul {
+    list-style: none;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,54 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --color-white: #fff;
+  --color-black: #000;
+  
+  --color-blue: #40A4C8;
+
+  --color-grey: #ccc;
+  
+  --color-theme-light:  #CF8F2E;
+  --color-theme-dark: #703B09;
+  --color-order-btn: #966909;
+}
+
+html{
+  font-size:62.5%;
+}
+
+@media(max-width: 900px){
+  html{
+    font-size: 55%;
+  }
+}
+
+
+@media(max-width: 700px){
+  html{
+    font-size: 50%;
+  }
+}
+
+
+@media(max-width: 500px){
+  html{
+    font-size: 40%;
+  }
+}
+
+body {
+  font-family: "Open Sans" , sans-serif;
+
+  background-image: linear-gradient(to right, var(--color-white), var(--color-grey));
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

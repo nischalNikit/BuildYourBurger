@@ -1,0 +1,35 @@
+.Error{
+    width: 50%;
+    padding: 2rem;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media(max-width: 900px){
+    .Error {
+        width: 90%;
+    }
+}
+
+.Error img{
+    width: 50%;
+}
+
+.Error h1{
+    margin-top: 2rem;
+    font-size: 3rem;
+    color: var(--color-theme-dark);
+}
+
+.Error h2{
+    font-size: 1.5rem;
+    color: var(--color-theme-light);
+}
+
