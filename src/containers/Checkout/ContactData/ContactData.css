@@ -11,9 +11,19 @@
     text-transform: capitalize;
 }
 
+@media(max-width: 900px){
+    .ContactData{
+      width: 90%;
+    }
+}
+
 .ContactData h3{
     font-size: 1.75rem;
+    width: 75%;
+    margin: auto;
+    padding: 0.5rem;
     color: var(--color-theme-dark);
+    border-bottom: 3px solid var(--color-theme-dark);
 }
 
 .ContactForm{
@@ -23,33 +33,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.ContactForm input{
-    width: 75%;
-    padding: 1rem 2rem;
-    margin-bottom: 1rem;
-
-    border: 3px solid var(--color-theme-dark);
-    border-radius: 50px;
-    box-shadow: 2px 2px 2px var(--color-theme-dark);
-
-    font-family: inherit;
-    font-size: 1.5rem;
-    font-weight: 600;
-
-    color: var(--color-black);
-    background-color: #DAD735;
-}
-
-
-@media(max-width: 900px){
-    .ContactData{
-      width: 90%;
-    }
-    .ContactForm input{
-        width: 95%;
-    }
 }
 
 .ContactForm Button {
