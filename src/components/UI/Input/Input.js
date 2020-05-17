@@ -4,12 +4,21 @@ import classes from './Input.css';
 const Input = props => {
 
     let inputElement = null;
+    let inputClasses = [classes.Input];
+
+    if(props.valid){
+        inputClasses.push(classes.Valid);
+    }
+    else if(props.invalid && props.touched){
+        inputClasses.push(classes.Invalid);
+    }
+
     
     switch(props.elementtype){
         case ('input'):
             inputElement = (
                 <input 
-                    className = {classes.Input}
+                    className = {inputClasses.join(' ')}
                     onChange  = {props.inputChange} 
                     {...props.elementconfig} 
                 />
@@ -18,7 +27,7 @@ const Input = props => {
         case ('dropdown'):
             inputElement = (
                 <select 
-                    className = {classes.Input} 
+                    className = {inputClasses.join(' ')} 
                     value     = {props.elementconfig.value}
                     onChange  = {props.inputChange}     
                 > 

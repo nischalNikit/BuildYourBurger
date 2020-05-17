@@ -5,12 +5,12 @@
 
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .Input{
     padding: 1rem 2rem;
-    width: 70%;
+    width: 65%;
 
     border: 3px solid var(--color-theme-dark);
     border-radius: 50px;
@@ -24,8 +24,42 @@
     background-color: #DAD735;
 }
 
+.Valid{
+    padding: 1rem 2rem;
+    width: 65%;
+
+    border: 3px solid var(--color-white);
+    border-radius: 50px;
+    box-shadow: 2px 2px 2px var(--color-theme-dark);
+
+    font-family: inherit;
+    font-size: 1.25rem;
+    font-weight: 600;
+
+    color: var(--color-black);
+    background-color: greenyellow;
+}
+
+.Invalid{
+    padding: 1rem 2rem;
+    width: 65%;
+
+    border: 3px solid var(--color-white);
+    border-radius: 50px;
+    box-shadow: 2px 2px 2px var(--color-theme-dark);
+
+    font-family: inherit;
+    font-size: 1.25rem;
+    font-weight: 600;
+
+    color: var(--color-white);
+    background-color: salmon;
+}
+
 .Label{
+    width: 30%;
     padding: 1rem 2rem; 
+    margin-right: 2rem;
 
     font-family: inherit;
     font-size: 1.25rem;
@@ -37,11 +71,35 @@
 
     background-color: var(--color-theme-dark);
     color: #DAD735;
-
 }
 
-@media(max-width: 900px){
-    .Input{
-        width: 95%;
+@media(max-width: 600px){
+    .formElement{
+        width: 100%;
+    }
+
+    .Input, 
+    .Valid{
+        font-size: 1rem;
+        padding: 1rem;
+    }
+
+    .Label{
+        width: 35%;
+        font-size: 1rem;
+        padding: 1rem;
+        margin-right: 1rem;
+    }
+}
+
+@media(max-width: 400px){
+    .Label{
+        width: 40%;
+        margin-right: 1rem;
+    }
+
+    .Input,
+    .Valid{
+        width: 60%;
     }
 }
