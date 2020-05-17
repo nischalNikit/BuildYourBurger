@@ -19,6 +19,11 @@ class ContactData extends Component {
                     placeholder: "Your Name.",
                     value: ""
                 },
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false,
                 label: "Name",
                
             },
@@ -29,6 +34,11 @@ class ContactData extends Component {
                     placeholder: "Your Email.",
                     value: ""
                 },
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false,
                 label: "E-mail",
             },
             street:{    
@@ -38,6 +48,11 @@ class ContactData extends Component {
                     placeholder: "Your street address.",
                     value: ""
                 },
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false,
                 label: "Street",
             },
             pinCode:{
@@ -47,6 +62,12 @@ class ContactData extends Component {
                     placeholder: "Your postal code.",
                     value: ""
                 },
+                validation: {
+                    required: true,
+                    minLength: 6
+                },
+                valid: false,
+                touched: false,
                 label: "PIN Code",
             },
             country:{
@@ -56,6 +77,11 @@ class ContactData extends Component {
                     placeholder: "Your country.",
                     value: ""
                 },
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false,
                 label: "Country",
             },
             delivery:{
@@ -64,9 +90,13 @@ class ContactData extends Component {
                     options: ["Super", "Normal"],
                     value: ""
                 },
+                validation: {},
+                valid: true,
+                touched: true,
                 label: "Delivery"
             }
-        }
+        },
+        formValidity: false
     }
 
     orderHandler = () => {
@@ -98,14 +128,36 @@ class ContactData extends Component {
     inputChangeHandler = (event, formKey) => {
         
         let newformOrder   = {...this.state.formOrder};
-        let formElement = {...newformOrder[formKey]};
+        let formElement    = {...newformOrder[formKey]};
+        let formValidity   = true;
 
         formElement.elementConfig.value = event.target.value;
+        formElement.valid 
+            = this.checkValidity(formElement.elementConfig.value, formElement.validation); 
+        formElement.touched = true;
         newformOrder[formKey] = formElement;
 
-        this.setState({formOrder: newformOrder});
+        for(let formElement in this.state.formOrder){
+            formValidity = this.state.formOrder[formElement].valid && formValidity;
+        }
+
+
+        this.setState({formOrder: newformOrder, formValidity: formValidity});
     }
 
+    checkValidity = (value, rules) => {
+        let isValid = true;
+
+        if(rules.required){
+            isValid = value.trim() !== "" && isValid;
+        }
+
+        if(rules.minLength){
+            isValid = value.length >= rules.minLength && isValid;
+        }
+
+        return isValid;
+    }
 
     render(){
         let formElements = [];
@@ -125,11 +177,16 @@ class ContactData extends Component {
                             elementtype   = {formElement.elementType}
                             elementconfig = {formElement.elementConfig}
                             label         = {formElement.label}
+                            valid         = {formElement.valid}
+                            invalid       = {!formElement.valid}
+                            touched       = {formElement.touched}
                             inputChange   = {(event) =>this.inputChangeHandler(event, formElement.id)}
                         />
                     ))
                 }
-            <Button btnType="Success">ORDER NOW</Button>
+            <Button btnType="Success" disabled = {!this.state.formValidity}>
+                ORDER NOW
+            </Button>
             </form> 
         )
 

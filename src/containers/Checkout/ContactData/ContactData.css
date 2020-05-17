@@ -1,7 +1,16 @@
 .ContactData{
-    background-color: var(--color-white);
-
-    width: 50%;
+    background-image: linear-gradient(to right bottom, 
+        var(--color-white) 48%,
+        var(--color-theme-dark) 48%,
+        var(--color-theme-dark) 48.5%,
+        #DAD735 48.5%,
+        #DAD735 51%,
+        var(--color-theme-dark) 51%,
+        var(--color-theme-dark) 51.5%,
+        var(--color-grey) 51.5%
+    );
+    
+    width: 75%;
     padding: 2rem;
     margin-top: 2rem;
 
@@ -17,13 +26,34 @@
     }
 }
 
+@media(max-width: 600px){
+    .ContactData{
+      background-image: linear-gradient(to right, var(--color-white) 50%, var(--color-grey));
+    }
+}
+
 .ContactData h3{
     font-size: 1.75rem;
-    width: 75%;
+    width: 50%;
     margin: auto;
     padding: 0.5rem;
     color: var(--color-theme-dark);
-    border-bottom: 3px solid var(--color-theme-dark);
+    border: 3px solid var(--color-theme-dark);
+    background-color: #DAD735;
+    box-shadow: 2px 2px 2px var(--color-theme-dark);
+}
+
+@media(max-width: 900px){
+    .ContactData h3{
+      width: 70%;
+    }
+}
+
+
+@media(max-width: 400px){
+    .ContactData h3{
+      width: 80%;
+    }
 }
 
 .ContactForm{
