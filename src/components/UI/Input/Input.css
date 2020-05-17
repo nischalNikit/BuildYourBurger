@@ -1,0 +1,47 @@
+.formElement{
+    padding: 1rem;
+    width: 95%;
+    margin-bottom: 1rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.Input{
+    padding: 1rem 2rem;
+    width: 70%;
+
+    border: 3px solid var(--color-theme-dark);
+    border-radius: 50px;
+    box-shadow: 2px 2px 2px var(--color-theme-dark);
+
+    font-family: inherit;
+    font-size: 1.25rem;
+    font-weight: 600;
+
+    color: var(--color-black);
+    background-color: #DAD735;
+}
+
+.Label{
+    padding: 1rem 2rem; 
+
+    font-family: inherit;
+    font-size: 1.25rem;
+    font-weight: 600;
+
+    border: 2px solid #DAD735;
+    box-shadow: 2px 2px 2px #DAD735;
+    border-radius: 50px;
+
+    background-color: var(--color-theme-dark);
+    color: #DAD735;
+
+}
+
+@media(max-width: 900px){
+    .Input{
+        width: 95%;
+    }
+}
