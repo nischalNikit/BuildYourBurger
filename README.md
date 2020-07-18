@@ -23,3 +23,7 @@ Open the application at your local machine address.
 You can also use the 'https://heuristic-ptolemy-3a7c29.netlify.app' to see the deployed version.
 
 HAPPY HACKING AND MORE UPDATES TO FOLLOW!
+
+Last Update : 19/7/2020
+1. Introduced Redux for complete State Management of the application.
+2. Implementing Authentication in the application using the Firebase authentication from the backend.            
