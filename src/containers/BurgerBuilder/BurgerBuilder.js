@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+
 import axios from '../../axios-orders';
 import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import withErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
-
-import * as actionTypes from '../../store/actions';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
+
+import * as actionCreators from '../../store/actions/action-index';
 
 
 class BurgerBuilder extends Component {
@@ -17,20 +18,12 @@ class BurgerBuilder extends Component {
     state = {
         purchasable: false,
         purchasing: false,
-        loading: false,
-        error: null
+        loading: false
     }
 
     componentDidMount() {
-        /*
-        axios.get('https://my-burger-builder-988b4.firebaseio.com/ingredients.json')
-            .then(response => {
-                this.setState({ingredients: response.data});
-            })
-            .catch(error => {
-                this.setState({error: error});
-            });
-        */
+        this.props.setUpIngredients();
+        this.props.fetchIngredients();
     }
 
     updatePurchaseState = (ingredients) => {
@@ -46,7 +39,12 @@ class BurgerBuilder extends Component {
     }
 
     purchaseEnableHandler = () => {
-        this.setState({purchasing: true});
+        if(this.props.isAuthenticated){
+            this.setState({purchasing: true});
+        }else{
+            this.props.history.push("/auth");
+        }
+       
     }
 
     purchaseDisableHandler = () => {
@@ -54,11 +52,11 @@ class BurgerBuilder extends Component {
     }
 
     continueOrderHandler = () => {
+        this.props.onInitPurchase();
         this.props.history.push("/checkout");
     }
 
     render(){
-
         const disabledInfo = {
             ...this.props.ingredients
         };
@@ -72,9 +70,9 @@ class BurgerBuilder extends Component {
 
         let orderSummary = null;
         let burger = 
-        this.state.error 
+        this.props.error 
             ? <p style={{textAlign: "center"}}>
-                {this.state.error.message}
+                {this.props.error.message}
               </p>
             :<Spinner />;
                     
@@ -110,8 +108,9 @@ class BurgerBuilder extends Component {
     
         return(
             <Auxiliary>
-                <Modal noOrder = {this.purchaseDisableHandler} 
-                        show   = {this.state.purchasing}
+                <Modal 
+                    noOrder = {this.purchaseDisableHandler} 
+                    show    = {this.state.purchasing}
                 >
                     {orderSummary}
                 </Modal>
@@ -123,15 +122,20 @@ class BurgerBuilder extends Component {
 
 const mapStateToProps = state => {
     return {
-        ingredients: state.ingredients,
-        totalPrice: state.totalPrice
+        ingredients     : state.burgerReducer.ingredients,
+        totalPrice      : state.burgerReducer.totalPrice,
+        error           : state.burgerReducer.error,
+        isAuthenticated : state.authReducer.userId !== null
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        addIngredient: (value) => dispatch({type: actionTypes.ADD_INGREDIENT, value: value}),
-        removeIngredient: (value) => dispatch({type: actionTypes.REMOVE_INGREDIENT, value: value})
+        setUpIngredients : () => dispatch(actionCreators.setUpIngredients()),
+        addIngredient    : (ingredient) => dispatch(actionCreators.addIngredient(ingredient)),
+        removeIngredient : (ingredient) => dispatch(actionCreators.removeIngredient(ingredient)),
+        fetchIngredients : () => dispatch(actionCreators.fetchIngredients()),
+        onInitPurchase   : () => dispatch(actionCreators.purchaseInit())
     }
 }
 

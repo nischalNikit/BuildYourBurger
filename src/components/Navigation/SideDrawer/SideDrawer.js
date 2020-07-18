@@ -26,7 +26,7 @@ const sideDrawer = props => {
                     <Logo />
                 </div>
                 <nav>
-                    <NavItems />
+                    <NavItems showLogin = {props.showLoginButton}/>
                 </nav>
             </div>    
         </Auxiliary>

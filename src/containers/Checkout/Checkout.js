@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import classes from './Checkout.css';
@@ -39,6 +39,10 @@ class Checkout extends Component {
                     path      = {this.props.match.path + "/contact-form"} 
                     component = {ContactData}
                 />
+                {
+                    this.props.purchased 
+                    ? <Redirect to = "/" /> : null
+                }
             </div>
         )
     }
@@ -46,8 +50,9 @@ class Checkout extends Component {
 
 const mapStateToProps = state => {
     return {
-        ingredients: state.ingredients,
-        totalPrice: state.totalPrice
+        ingredients : state.burgerReducer.ingredients,
+        totalPrice  : state.burgerReducer.totalPrice,
+        purchased   : state.orderReducer.purchased
     }
 }
 

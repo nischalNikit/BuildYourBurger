@@ -36,8 +36,11 @@
 }
 
 @media(min-width: 500px){
+    .Toolbar nav{
+        margin-left: auto;
+    }
     .Logo{
-        margin-right: auto;
+        margin-right: 2rem;
     }
 }
 

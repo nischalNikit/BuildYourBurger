@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
-import axios from '../../../axios-orders';
 import {connect} from 'react-redux';
 import classes from './ContactData.css';
 
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
+import * as actionCreators from '../../../store/actions/action-index';
 
 class ContactData extends Component {
 
     state = {
-        loading: false,
         formOrder: {
             name: {
                 elementType: "input",
@@ -100,30 +99,22 @@ class ContactData extends Component {
         formValidity: false
     }
 
-    orderHandler = () => {
-        this.setState({loading: true});
+    orderHandler = (event) => {
+        event.preventDefault();
 
         let orderDetails = {};
-
         for(let key in this.state.formOrder){
             orderDetails[key] = this.state.formOrder[key].elementConfig.value;
         }
 
         const order = {
-            ingredients: this.props.ingredients,
-            price: this.props.totalPrice,
-            orderDetails: orderDetails
+            ingredients : this.props.ingredients,
+            price       : this.props.totalPrice,
+            orderData   : orderDetails,
+            userId      : this.props.userId
         }
 
-        axios.post('/orders.json',order)
-            .then(response => {
-                this.setState({loading: false});
-                this.props.history.replace("/");
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({loading: false});
-            });
+        this.props.onOrderHandler(order);
     }
  
     inputChangeHandler = (event, formKey) => {
@@ -170,7 +161,10 @@ class ContactData extends Component {
         }
 
         let form = (
-            <form className = {classes.ContactForm} onSubmit = {this.orderHandler}>
+            <form 
+                className = {classes.ContactForm} 
+                onSubmit  = {this.orderHandler}
+            >
                 {
                     formElements.map((formElement) => (
                         <Input 
@@ -185,13 +179,17 @@ class ContactData extends Component {
                         />
                     ))
                 }
-            <Button btnType="Success" disabled = {!this.state.formValidity}>
+            <Button 
+                btnType="Success" 
+                disabled = {!this.state.formValidity}
+            >
                 ORDER NOW
             </Button>
             </form> 
         )
 
-        if(this.state.loading){
+
+        if(this.props.loading){
             form = <Spinner />
         }
 
@@ -206,9 +204,18 @@ class ContactData extends Component {
 
 const mapStateToProps = state => {
     return {
-        ingredients: state.ingredients,
-        totalPrice: state.totalPrice
+        ingredients : state.burgerReducer.ingredients,
+        totalPrice  : state.burgerReducer.totalPrice,
+        loading     : state.orderReducer.loading,
+        purchased   : state.orderReducer.purchased,
+        userId      : state.authReducer.userId
     }
 }
 
-export default connect(mapStateToProps)(ContactData);
+const mapDispatchToProps = dispatch => {
+    return {
+        onOrderHandler : (order) => dispatch(actionCreators.purchaseOrder(order))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactData);
