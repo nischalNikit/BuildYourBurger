@@ -4,8 +4,8 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
 import Input from '../../components/UI/Input/Input';
-import Button from '../../components/UI/Button/Button';
 import Spinner from "../../components/UI/Spinner/Spinner";
+import {updateObject, checkValidity} from "../../store/utilities/utility";
 
 import * as actionCreators from '../../store/actions/action-index';
 
@@ -49,7 +49,6 @@ class Auth extends Component {
         }
 
         this.inputChangeHandler = this.inputChangeHandler.bind(this);
-        this.checkValidity      = this.checkValidity.bind(this);
         this.orderHandler       = this.orderHandler.bind(this);
         this.changeFormStatus   = this.changeFormStatus.bind(this);
     }
@@ -63,44 +62,23 @@ class Auth extends Component {
     }
 
     inputChangeHandler(event, formKey){
-        
-        let newformOrder   = {...this.state.authForm};
-        let formElement    = {...newformOrder[formKey]};
-        let formValidity   = true;
+        let newformOrder = updateObject(this.state.authForm, {
+            [formKey] : updateObject(this.state.authForm[formKey], {
+                elementConfig : updateObject(this.state.authForm[formKey].elementConfig, {
+                    value : event.target.value
+                }),
+                valid : checkValidity(event.target.value, this.state.authForm[formKey].validation),
+                touched : true
+            })
+        })
 
-        formElement.elementConfig.value = event.target.value;
-        formElement.valid 
-            = this.checkValidity(formElement.elementConfig.value, formElement.validation); 
-        formElement.touched = true;
-        newformOrder[formKey] = formElement;
-
-        for(let formElement in this.state.formOrder){
-            formValidity = this.state.authForm[formElement].valid && formValidity;
-        }
-
-
-        this.setState({authForm: newformOrder, formValidity: formValidity});
+       this.setState({authForm: newformOrder});
     }
 
     changeFormStatus(event){
         event.preventDefault();
         let prevFromStatus = this.state.isForSignUp;
         this.setState({isForSignUp: !prevFromStatus});
-    }
-
-    
-    checkValidity(value, rules){
-        let isValid = true;
-
-        if(rules.required){
-            isValid = value.trim() !== "" && isValid;
-        }
-
-        if(rules.minLength){
-            isValid = value.length >= rules.minLength && isValid;
-        }
-
-        return isValid;
     }
 
     orderHandler(event){
@@ -146,27 +124,27 @@ class Auth extends Component {
                     : null
                 }
                 {form}
-                <div className = {classes.AuthButton}>
-                    <Button 
-                        btnType = "Success"
-                        clicked = {this.orderHandler} 
+                <div style={{textAlign:"center", marginBottom:"1rem"}}>
+                    <button 
+                        onClick = {this.orderHandler} 
+                        className = {classes.AuthButton}
                     >
                     {
                         this.state.isForSignUp ? "SIGN UP" : "LOGIN"
                     }
-                    </Button>
+                    </button>
                 </div>
-                <div className = {classes.AuthChangeButton}>
-                    <Button 
-                        btnType = "Success"
-                        clicked = {this.changeFormStatus} 
+                <div style={{textAlign:"center", marginBottom:"1rem"}}>
+                    <button 
+                        className = {classes.AuthChangeButton}
+                        onClick   = {this.changeFormStatus} 
                     >
                     {
                         this.state.isForSignUp 
                         ? "ALREADY A USER ? SIGN IN." 
                         : "FIRST TIME HERE ? SIGN UP."
                     }
-                    </Button>
+                    </button>
                 </div> 
             </form>
         );

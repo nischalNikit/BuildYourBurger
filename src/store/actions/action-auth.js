@@ -63,7 +63,8 @@ export const auth = (email, password, isSignUp) => {
     }
 
     return dispatch => {
-        dispatch(authStart());         
+        dispatch(authStart());
+
         axios.post(apiURL, info)
         .then(response => { 
             dispatch(authSuccess(response.data.localId, response.data.idToken, info.email));

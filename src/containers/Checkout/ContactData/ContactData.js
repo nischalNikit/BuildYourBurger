@@ -6,6 +6,7 @@ import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import * as actionCreators from '../../../store/actions/action-index';
+import {updateObject, checkValidity} from '../../../store/utilities/utility';
 
 class ContactData extends Component {
 
@@ -118,37 +119,23 @@ class ContactData extends Component {
     }
  
     inputChangeHandler = (event, formKey) => {
-        
-        let newformOrder   = {...this.state.formOrder};
-        let formElement    = {...newformOrder[formKey]};
+    
+        let newformOrder = updateObject(this.state.formOrder, {
+            [formKey] : updateObject(this.state.formOrder[formKey],{
+                elementConfig : updateObject(this.state.formOrder[formKey].elementConfig, {
+                    value : event.target.value
+                }),
+                touched : true,
+                valid : checkValidity(event.target.value, this.state.formOrder[formKey].validation)
+            })
+        });
+       
         let formValidity   = true;
-
-        formElement.elementConfig.value = event.target.value;
-        formElement.valid 
-            = this.checkValidity(formElement.elementConfig.value, formElement.validation); 
-        formElement.touched = true;
-        newformOrder[formKey] = formElement;
-
-        for(let formElement in this.state.formOrder){
-            formValidity = this.state.formOrder[formElement].valid && formValidity;
+        for(let formElement in newformOrder){
+            formValidity = newformOrder[formElement].valid && formValidity;
         }
-
 
         this.setState({formOrder: newformOrder, formValidity: formValidity});
-    }
-
-    checkValidity = (value, rules) => {
-        let isValid = true;
-
-        if(rules.required){
-            isValid = value.trim() !== "" && isValid;
-        }
-
-        if(rules.minLength){
-            isValid = value.length >= rules.minLength && isValid;
-        }
-
-        return isValid;
     }
 
     render(){

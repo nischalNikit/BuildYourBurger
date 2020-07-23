@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import classes from './OrderSummary.css';
 
 import Button from '../../UI/Button/Button';
-
 import PropType from 'prop-types';
 
 class OrderSummary extends Component{
