@@ -27,3 +27,8 @@ HAPPY HACKING AND MORE UPDATES TO FOLLOW!
 Last Update : 19/7/2020
 1. Introduced Redux for complete State Management of the application.
 2. Implementing Authentication in the application using the Firebase authentication from the backend.            
+
+Last Update : 24/7/2020
+1. Impement UI improvements.
+2. Impelent Lazy Loading.
+3. Improve code efficiency.
