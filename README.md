@@ -32,3 +32,9 @@ Last Update : 24/7/2020
 1. Impement UI improvements.
 2. Impelent Lazy Loading.
 3. Improve code efficiency.
+
+Last Update : 26/7/2020
+1. Implement Unit Testing using Jest, Enzyme packages for :-
+   : Functional Components.
+   : State-ful Components.
+   : Reducers in redux state.
