@@ -13,7 +13,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import * as actionCreators from '../../store/actions/action-index';
 
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
 
     state = {
         purchasable: false,
