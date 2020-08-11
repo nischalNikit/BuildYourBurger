@@ -1,53 +1,29 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Modal from '../../components/UI/Modal/Modal';
 import Auxiliary from '../Auxiliary/Auxiliary';
 
+import useError from '../../hooks/error-handler-hook';
+
 
 const withErrorHandler = (WrappedComponent, axios) => {
-    return class extends Component {
+    return (props) =>  {
+        const [error, errorConfirmedHandler] = useError(axios);
 
-        state = {
-            error: null,
-            errorStatus: false
-        }
-
-        constructor(props){
-            super(props);
-          
-            this.reqInterceptor = axios.interceptors.request.use(req => {
-                this.setState({error: null});
-                return req;
-            });
-
-            this.resInterceptor = axios.interceptors.response.use(res => res, error => {
-                this.setState({error: error, errorStatus: true});
-            });
-        }
-
-        componentWillUnmount(){
-            axios.interceptors.request.eject(this.reqInterceptor);
-            axios.interceptors.response.eject(this.resInterceptor);
-            
-        }
-
-        errorConfirmedHandler = () => {
-            this.setState({error: null, errorStatus: false});
-        }
-
-        render(){
-            return(
-                <Auxiliary>
-                    <Modal show = {this.state.errorStatus} noOrder = {this.errorConfirmedHandler}>
-                        {this.state.error ? <h1 style = {{textAlign: "center"}}>
-                                                    {this.state.error.message}
-                                            </h1>
-                                            : null}
-                    </Modal>
-                    <WrappedComponent {...this.props} />
-                </Auxiliary>
-            )
-        }
+        return(
+            <Auxiliary>
+                <Modal show = {error} noOrder = {errorConfirmedHandler}>
+                    {error 
+                        ? 
+                        <h1 style = {{textAlign: "center"}}>
+                            {error.message}
+                        </h1>
+                        : null
+                    }
+                </Modal>
+                <WrappedComponent {...props} />
+            </Auxiliary>
+        )
     }
-}
+};
 
 export default withErrorHandler;

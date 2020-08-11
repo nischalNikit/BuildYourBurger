@@ -1,39 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classes from './Order.css';
 
-class Order extends Component{
-    
-    state={
-        ingredients: []
+const order = React.memo((props) => {
+  
+    const ingredients = [];
+    for(let ing in props.ingredients){
+        ingredients.push({
+            ingredient: ing,
+            ingredientAmount: props.ingredients[ing]
+        });
     }
 
-    componentDidMount(){
-        let orderedIngredients = [];
-        for(let ing in this.props.ingredients){
-            orderedIngredients.push({
-                ingredient: ing,
-                ingredientAmount: this.props.ingredients[ing]
-            });
-        }
-        this.setState({ingredients: orderedIngredients});
-    }
-
-    render(){
-        let ingredientOutput = this.state.ingredients.map((element) => {
-            return (
+    let ingredientOutput = ingredients.map((element) => {
+        return (
             <span key = {element.ingredient}>
                 {element.ingredient} &rarr; {element.ingredientAmount}
             </span>
-        )});
+        )
+    });
 
-        return(
+    return(
         <div className = {classes.Order}>
             <div>
                 {ingredientOutput}
             </div>
-            <p>Price = ${this.props.price}</p>
+            <p>Price = ${props.price}</p>
         </div>
-    )}
-}
+    )
+});
 
-export default Order;
+export default order;

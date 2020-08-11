@@ -1,48 +1,44 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import classes from './Layout.css';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 
-class Layout extends Component {
+const layout = React.memo((props) => {
 
-    state = {
-        showSideDrawer: false
-    } 
+    const isAuthenticated = useSelector((state) => {
+        return state.authReducer.userId !== null;
+    });
+    const userEmail = useSelector((state) => {
+        return state.authReducer.userEmail;
+    })
 
-    sideDrawerToggle = () => {
-        let sideDrawerState = this.state.showSideDrawer;
-        this.setState({showSideDrawer: !sideDrawerState});
+    const [showSideDrawer, changeSideDrawerState] = useState(false);
+
+    const sideDrawerToggle = () => {
+        changeSideDrawerState((prevSideDrawerState) => !prevSideDrawerState);
     }
 
-    render(){
-        return (
-            <Auxiliary>
-                <Toolbar 
-                    sideDrawerChange = {this.sideDrawerToggle}
-                    showLoginButton  = {this.props.isAuthenticated}
-                    onLogout         = {this.props.onLogout}
-                    user             = {this.props.userEmail}
-                />
-                <SideDrawer
-                    showState        = {this.state.showSideDrawer}
-                    sideDrawerClosed = {this.sideDrawerToggle}
-                    showLoginButton  = {this.props.isAuthenticated}
-                />
-                <main className = {classes.Content}>
-                    {this.props.children}
-                </main>
-            </Auxiliary>
-    )};
-} 
+    return (
+        <Auxiliary>
+            <Toolbar 
+                sideDrawerChange = {sideDrawerToggle}
+                showLoginButton  = {isAuthenticated}
+                onLogout         = {props.onLogout}
+                user             = {userEmail}
+            />
+            <SideDrawer
+                showState        = {showSideDrawer}
+                sideDrawerClosed = {sideDrawerToggle}
+                showLoginButton  = {isAuthenticated}
+            />
+            <main className = {classes.Content}>
+                {props.children}
+            </main>
+        </Auxiliary>
+    );
+}); 
 
-const mapStateToProps = state => {
-    return {
-        isAuthenticated : state.authReducer.userId !== null,
-        userEmail       : state.authReducer.userEmail
-    }
-}
-
-export default connect(mapStateToProps)(Layout);
+export default layout;
