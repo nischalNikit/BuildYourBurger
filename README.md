@@ -38,3 +38,8 @@ Last Update : 26/7/2020
    : Functional Components.
    : State-ful Components.
    : Reducers in redux state.
+
+Last Update : 12/8/2020
+1. Implement React Hooks throughout the application.
+2. useState(), useEffect() are being used in the hooks throughout the application.
+3. useDispatch(), useSelector() hooks are used in the  redux.
