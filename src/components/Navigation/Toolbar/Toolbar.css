@@ -34,6 +34,12 @@
     height: 120%;
 }
 
+@media(max-width:500px){
+    .Logo{
+        display: none;
+    }
+}
+
 @media(min-width: 500px){
     .Toolbar nav{
         margin-left: auto;
