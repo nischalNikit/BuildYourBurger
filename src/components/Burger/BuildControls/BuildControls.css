@@ -1,19 +1,36 @@
 .BuildControls {
-    width: 100%;
-
+    height: 100%;
+    width: 30%;
     font-size: 1.5rem;
-
     background-color: var(--color-theme-light);
 
     display: flex;
-    flex-flow: column;
+    flex-direction: column;
+    justify-content: space-around;
     align-items:center;
 
     box-shadow: 0 2px 1px #ccc;
-    border: 3px solid var(--color-theme-dark);
-
-    margin: auto;
+    border-right: 2px solid var(--color-theme-dark);
     padding: 2rem 0;
+}
+
+@media(max-width: 900px) and (min-height: 601px){
+    .BuildControls{
+        width: 40%;
+    }
+}
+
+@media(max-width: 700px) and (min-height: 601px){
+    .BuildControls{
+        width: 45%;
+    }
+}
+
+@media(max-width: 600px){
+    .BuildControls{
+        width: 100%;
+        height: 40%;
+    }
 }
 
 .OrderButton {

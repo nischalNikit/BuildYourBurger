@@ -7,13 +7,12 @@
     left: 0;
 
     background-color: var(--color-theme-dark);
-    border-bottom: 3px solid var(--color-theme-light);
 
     display: flex;
     justify-content: space-between;
     align-items:center;
     
-    padding: 1rem 2rem;
+    padding: 1.5rem 3rem;
     box-sizing: border-box;
     z-index: 90;
 }

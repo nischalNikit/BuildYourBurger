@@ -44,11 +44,11 @@ html{
 }
 
 body {
-  font-family: "Open Sans" , sans-serif;
-
-  background-image: linear-gradient(to right, var(--color-white), var(--color-grey));
-
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  font-family: "Open Sans" , sans-serif;
+  background-image: linear-gradient(to right, var(--color-white), var(--color-grey));
 }

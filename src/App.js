@@ -33,7 +33,14 @@ const app = React.memo((props) => {
   }, []);
 
   return (
-    <div>
+    <div style = {{
+      width: '100%',
+      height: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    }}>
       <Layout>
         <Suspense fallback = {<Spinner />}>
           <Switch>

@@ -5,28 +5,44 @@
     text-align: center;
     font-weight: bold;
     font-size: 1.2rem;
+}
 
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-theme-light);
+    border: 2px solid var(--color-white);
+    outline: none;
+    border-radius: 10px;
 }
 
 @media(min-width: 300px) and (min-height: 401px){
     .Burger{
-        width: 200px;
-        height: 250px;
+        width: 300px;
+        height: 350px;
+        overflow: hidden;
+        overflow-y: scroll;
     }
 }
 
 
 @media(min-width: 600px) and (min-height: 501px){
     .Burger{
-        width: 300px;
-        height: 350px;
+        width: 400px;
+        height: 450px;
+        overflow: hidden;
+        overflow-y: scroll;
     }
 }
 
 @media(min-width: 700px) and (min-height: 601px){
     .Burger{
-        width: 400px;
-        height: 450px;
+        width: 450px;
+        height: 500px;
+        overflow: hidden;
+        overflow-y: scroll;
     }
 }
 
