@@ -35,15 +35,19 @@ const orders = React.memo((props) => {
             <Order 
                 ingredients = {order.ingredients} 
                 key         = {order.id}
-                price       = {order.price}
+                price       = {order.price.toFixed(2)}
             />)
         });
     }
 
     return(
         <div className = {classes.Orders}>
-            <h1>Your previous orders:</h1>
-            {Orders}
+            <div className = {classes.OrderSidebar}>
+                <h1>Your previous orders</h1>
+            </div>
+            <div className = {classes.OrderMain}>
+                {Orders}
+            </div>
         </div>
     )
 });

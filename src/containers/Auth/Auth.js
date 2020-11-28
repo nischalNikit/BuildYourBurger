@@ -115,7 +115,7 @@ const auth = () => {
         })
     }
 
-    let form = formElements.map((formElement) => (
+    let inputs = formElements.map((formElement) => (
         <Input 
             key           = {formElement.id} 
             elementtype   = {formElement.elementType}
@@ -131,38 +131,34 @@ const auth = () => {
     let formJSX = null;
     formJSX = (
         <form 
-            className = {classes.ContactForm} 
+            className = {classes.AuthForm} 
         >
             {
                 errorMessage
-                ? <h2 style = {{textAlign:"center", color:"red", fontSize:"20px"}}>
+                ? <h2 className = {classes.error}>
                     {errorMessage.split("_").join(" ")}
                    </h2>
                 : null
             }
-                {form}
-            <div style={{textAlign:"center", marginBottom:"1rem"}}>
-                <button 
-                    onClick   = {orderHandler} 
-                    className = {classes.AuthButton}
-                >
-                    {
-                        isForSignUp ? "SIGN UP" : "LOGIN"
-                    }
-                </button>
-            </div>
-            <div style={{textAlign:"center", marginBottom:"1rem"}}>
-                <button 
-                    className = {classes.AuthChangeButton}
-                    onClick   = {changeFormStatus} 
-                >
-                    {
-                        isForSignUp 
-                        ? "ALREADY A USER ? SIGN IN." 
-                        : "FIRST TIME HERE ? SIGN UP."
-                    }
-                </button>
-            </div> 
+                {inputs}
+            <button 
+                onClick   = {orderHandler} 
+                className = {classes.AuthButton}
+            >
+                {
+                    isForSignUp ? "Create An Account" : "Log In"
+                }
+            </button>
+            <button 
+                className = {classes.AuthChangeButton}
+                onClick   = {changeFormStatus} 
+            >
+                {
+                    isForSignUp 
+                    ? "Already a user? Sign In." 
+                    : "First time here? Sign Up."
+                }
+            </button>
         </form>
     );
 
@@ -173,12 +169,19 @@ const auth = () => {
 
     return(
         <div className = {classes.Auth}>
-            <h1>
-            {
-                isForSignUp ? "SIGN UP TO BURGER BUILDER" : "LOGIN TO BURGER BUILDER"
-            }
-            </h1>
-            {formJSX}
+            <div className = {classes.AuthSideBar}>
+                <h1 className = {classes.Title}>
+                    Burger Builder
+                </h1>
+            </div>
+            <div className = {classes.AuthMain}>
+                <h3 className = {classes.SubTitle}>
+                {
+                    isForSignUp ? "Sign Up" : "Sign In"
+                }
+                </h3>
+                {formJSX}
+            </div>
             {
                 isAuthenticated 
                 ? <Redirect to = {userPath} />

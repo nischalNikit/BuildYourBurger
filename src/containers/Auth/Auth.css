@@ -1,64 +1,123 @@
 .Auth{
-    background-color: var(--color-theme-light);
-
-    border: 3px solid var(--color-theme-dark);
-    box-shadow: 0 1rem 2rem rgb(0,0,0);
-
-    width: 60%;
-    margin: 2rem auto;
-    padding: 2rem;
+    width: 100%;
+    height: 100%;
 
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: row;
 }
 
-.Auth h1{
-    text-align: center;
-    font-size: 2.25rem;
+@media(max-width: 600px){
+    .Auth{
+        flex-direction: column;
+    }
+}
 
-    text-transform: capitalize;
-    background-color: #DAD735;
-    border: 2px solid black;
-    box-shadow: 2px 2px 2px black;
-    display: inline-block;
+.AuthSideBar{
+    width: 30%;
+    height: 100%;
+    background-color: var(--color-theme-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 2px solid var(--color-theme-dark);
+}
 
+@media(max-width: 900px){
+    .AuthSideBar{
+        width: 40%;
+    }
+}
+
+@media(max-width: 700px){
+    .AuthSideBar{
+        width: 45%;
+        height: auto;
+    }
+}
+
+@media(max-width: 600px){
+    .AuthSideBar{
+        width: 100%;
+        border-bottom: 2px solid var(--color-theme-dark);
+        border-right: none;
+        padding: 1rem;
+    }
+}
+
+.error{
+    margin: 1rem auto;
+    font-size: 1.75rem;
+    background-color: salmon;
     padding: 1rem;
-    margin-bottom: 2rem;
+    border-radius: 25px;
+    color: var(--color-white);
+    border: 2px solid var(--color-white);
+    letter-spacing: 1px;
+    text-transform: lowercase;
+}
+
+.AuthMain{
+    flex: 1;
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Title{
+    width: 75%;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    text-align: center;
+    text-transform: capitalize;
+    box-shadow: 2px 2px 2px black;
+    padding: 1rem;
+    background-color: #DAD735;
+    border: 1px solid var(--color-black);
+    border-radius: 30px;
+}
+
+.SubTitle{
+    font-size: 3.5rem;
+    color: var(--color-theme-dark);
 }
 
 .AuthButton {
-    background-color: #DAD735;
+    width: 44%;
+    padding: 1rem;
+    margin: 2.5rem auto;
+    background-color:var(--color-theme-dark);
+    color:#FFFFFF;
+    letter-spacing: 1px;
     outline: none;
     cursor: pointer;
-    border: 3px solid var(--color-theme-dark);
-    color: var(--color-order-btn);
+    border-radius: 25px;
+    border: 2px solid var(--color-theme-dark);
     font-family: inherit;
-    font-size: 1.2rem;
+    font-size: 2rem;
     font-weight: bold;
-    padding: 1.5rem 3rem;
-    box-shadow: 2px 2px 2px var(--color-order-btn);
     margin: 0 auto;
 }
 
 .AuthChangeButton{
-    background-color: #FFFFFF;
+    margin-top: 2rem;
     outline: none;
     cursor: pointer;
-    border: 3px solid var(--color-black);
     color: var(--color-blue);
     font-family: inherit;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
-    padding: 1.5rem 3rem;
-    box-shadow: 2px 2px 2px var(--color-order-btn);
-    margin: 0 auto;
+    background-color: transparent;
+    border:none;
 }
 
-
-@media(max-width: 700px){
-    .Auth{
-      width:95%;
-    }
+.AuthForm{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

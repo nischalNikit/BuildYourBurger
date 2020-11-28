@@ -1,23 +1,43 @@
 .Order{
-    background-color: white;
-    border: 3px solid black;
-    box-shadow: 2px 2px 2px black;
+    width: 60%;
+    background-color: #DAD750;
+    border: 2px solid var(--color-theme-dark);
+    box-shadow: 2px 2px 2px var(--color-theme-dark);
+    border-radius: 45px;
 
     margin-bottom: 1rem;
 
     font-size: 2.5rem;
     padding: 1rem;
 
-    width: 75%;
-
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-@media(max-width: 700px){
+@media(max-width: 900px){
     .Order{
-      width:95%;
+        width: 75%;
+    }
+}
+
+@media(max-width: 800px){
+    .Order{
+      width:60%;
+    }
+}
+
+@media(max-width: 600px){
+    .Order{
+      width:70%;
+      margin-bottom: 2rem;
+    }
+}
+
+
+@media(max-width: 500px){
+    .Order{
+      width:90%;
     }
 }
 

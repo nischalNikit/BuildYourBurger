@@ -1,6 +1,7 @@
 import React, { useEffect, Suspense } from 'react';
 import {Switch, Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import classes from './App.css';
 
 import Layout from './containers/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
@@ -37,14 +38,7 @@ const app = React.memo((props) => {
   }, []);
 
   return (
-    <div style = {{
-      width: '100%',
-      height: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      alignItems: 'center'
-    }}>
+    <div className = {classes.App}>
       <Layout>
         <Suspense fallback = {<Spinner />}>
           <Switch>

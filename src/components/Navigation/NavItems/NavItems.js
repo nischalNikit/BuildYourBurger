@@ -20,7 +20,7 @@ const navItems = props => (
 
         <NavItem link= {props.showLogin ? "/logout" : "/auth"} >
         {
-            props.showLogin ? "Log Out" : "Login | Sign Up"
+            props.showLogin ? "Log Out" : "Login/Sign Up"
         }
         </NavItem>     
     </ul>
