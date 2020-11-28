@@ -26,6 +26,10 @@ const asyncLogout = React.lazy(() => {
   return import('./containers/Auth/Logout/Logout');
 });
 
+const asyncContactData = React.lazy(() => {
+  return import('./containers/Checkout/ContactData/ContactData');
+})
+
 const app = React.memo((props) => {
 
   useEffect(() => {
@@ -44,9 +48,14 @@ const app = React.memo((props) => {
       <Layout>
         <Suspense fallback = {<Spinner />}>
           <Switch>
-            {props.isAuthenticated ? <Route path = "/checkout" component = {asyncCheckout} /> : null}
-            {props.isAuthenticated ? <Route path = "/orders"   component = {asyncOrders} />   : null}
-            {props.isAuthenticated ? <Route path = "/logout"   component = {asyncLogout} />   : null}
+            {props.isAuthenticated ? <Route path = "/checkout" component = {asyncCheckout}/> : null}
+            {props.isAuthenticated ? <Route path = "/orders" component = {asyncOrders} /> : null}
+            {props.isAuthenticated ? <Route path = "/logout" component = {asyncLogout} /> : null}
+            {
+              props.isAuthenticated 
+              ? <Route path = "/contact-form" component = {asyncContactData} /> 
+              : null
+            }
             <Route path = "/auth" component = {asyncAuth} />
             <Route path = "/"     component = {BurgerBuilder} exact />
             <Route render = {() => <Error />} />

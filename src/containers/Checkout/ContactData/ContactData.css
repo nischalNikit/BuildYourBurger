@@ -1,55 +1,68 @@
 .ContactData{
-    background-image: linear-gradient(to right bottom, 
-        var(--color-white) 48%,
-        var(--color-theme-dark) 48%,
-        var(--color-theme-dark) 48.5%,
-        #DAD735 48.5%,
-        #DAD735 51%,
-        var(--color-theme-dark) 51%,
-        var(--color-theme-dark) 51.5%,
-        var(--color-grey) 51.5%
-    );
-    
-    width: 75%;
-    padding: 2rem;
-    margin-top: 2rem;
-
-    border: 3px solid var(--color-black);
-    box-shadow: 2px 2px 2px var(--color-black);
+    width: 100%;
+    height: 100%;
     text-align: center;
     text-transform: capitalize;
+    display: flex;
 }
 
-@media(max-width: 900px){
+@media(max-width: 550px){
     .ContactData{
-      width: 90%;
+       display: flex;
+       flex-direction: column;
     }
 }
-
-@media(max-width: 600px){
-    .ContactData{
-      background-image: linear-gradient(to right, var(--color-white) 50%, var(--color-grey));
-    }
-}
-
 
 .ContactData h3{
-    font-size: 1.75rem;
-    width: 50%;
+    font-size: 2.5rem;
+    width: 60%;
     margin: auto;
     padding: 0.5rem;
     color: var(--color-theme-dark);
-    border: 3px solid var(--color-theme-dark);
+    border: 2px solid var(--color-theme-dark);
+    border-radius: 25px;
     background-color: #DAD735;
     box-shadow: 2px 2px 2px var(--color-theme-dark);
 }
 
-@media(max-width: 900px){
-    .ContactData h3{
-      width: 70%;
+.Sidebar{
+    width: 30%;
+    height: 100%;
+    background-color: var(--color-theme-light);
+    border-right: 2px solid var(--color-theme-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media(max-width: 1100px) and (min-height: 601px){
+    .Sidebar{
+        width: 40%;
     }
 }
 
+@media(max-width: 700px) and (min-height: 601px){
+    .Sidebar{
+        width: 45%;
+    }
+}
+
+@media(max-width: 550px){
+    .Sidebar{
+       width: 100%;
+       height: auto;
+       padding: 2rem;
+       border-right: none;
+       border-bottom: 2px solid var(--color-theme-dark);
+    }
+}
+
+
+@media(max-width: 900px){
+    .ContactData h3{
+      width: 80%;
+    }
+}
 
 @media(max-width: 400px){
     .ContactData h3{
@@ -58,23 +71,23 @@
 }
 
 .ContactForm{
-    margin-top: 1rem;
-    padding: 2rem;
-
+    flex: 1;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
 .ContactForm Button {
-    margin-top: 2rem;
     font-size: 1.75rem;
-    padding: 1rem;
+    padding: 1rem 2rem;
+    letter-spacing: 1px;
 
-    border: 3px solid var(--color-black);
+    border: 1px solid var(--color-black);
+    border-radius: 25px;
     box-shadow: 2px 2px 2px var(--color-black);
     background-color: green;
     color: white;
-
 }
 

@@ -52,9 +52,6 @@ const Input = props => {
   
     return(
         <div className = {classes.formElement}>
-            <label className = {classes.Label}>
-                {props.label}
-            </label>
             {inputElement}
         </div>
     )

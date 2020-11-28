@@ -25,21 +25,26 @@ html{
 
 @media(max-width: 900px){
   html{
-    font-size: 55%;
+    font-size: 62.5%;
   }
 }
 
-
 @media(max-width: 700px){
   html{
-    font-size: 50%;
+    font-size: 56.25%;
   }
 }
 
 
 @media(max-width: 500px){
   html{
-    font-size: 40%;
+    font-size: 50%;
+  }
+}
+
+@media(max-width: 450px){
+  html{
+    font-size: 55%;
   }
 }
 
@@ -49,6 +54,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
 
-  font-family: "Open Sans" , sans-serif;
+  font-family: "Lobster" , sans-serif;
   background-image: linear-gradient(to right, var(--color-white), var(--color-grey));
 }

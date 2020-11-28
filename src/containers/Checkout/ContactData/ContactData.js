@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import classes from './ContactData.css';
 
@@ -10,7 +11,11 @@ import {updateObject, checkValidity} from '../../../store/utilities/utility';
 
 const contactData = React.memo((props) => {
 
-    const dispatch = useDispatch();
+    const dispatch  = useDispatch();
+    const purchased = useSelector((state) => {
+        return state.orderReducer.purchased;
+    })
+
     const onOrderHandler = (order) => {
         dispatch(actionCreators.purchaseOrder(order));
     }
@@ -36,7 +41,7 @@ const contactData = React.memo((props) => {
             elementConfig: {
                 type: "text",
                 name: "Name",
-                placeholder: "Your Name.",
+                placeholder: "Name.",
                 value: ""
             },
             validation: {
@@ -51,7 +56,7 @@ const contactData = React.memo((props) => {
             elementType: "input",
             elementConfig: {
                 type: "email",
-                placeholder: "Your Email.",
+                placeholder: "Email.",
                 value: ""
             },
             validation: {
@@ -65,7 +70,7 @@ const contactData = React.memo((props) => {
             elementType: "input",
             elementConfig: {
                 type: "text",
-                placeholder: "Your street address.",
+                placeholder: "Street address.",
                 value: ""
             },
             validation: {
@@ -79,7 +84,7 @@ const contactData = React.memo((props) => {
             elementType: "input",
             elementConfig: {
                 type: "number",
-                placeholder: "Your postal code.",
+                placeholder: "Postal code.",
                 value: ""
             },
             validation: {
@@ -94,7 +99,7 @@ const contactData = React.memo((props) => {
             elementType: "input",
             elementConfig: {
                 type: "text",
-                placeholder: "Your country.",
+                placeholder: "Country.",
                 value: ""
             },
             validation: {
@@ -175,7 +180,6 @@ const contactData = React.memo((props) => {
                         key           = {formElement.id} 
                         elementtype   = {formElement.elementType}
                         elementconfig = {formElement.elementConfig}
-                        label         = {formElement.label}
                         valid         = {formElement.valid}
                         invalid       = {!formElement.valid}
                         touched       = {formElement.touched}
@@ -187,7 +191,7 @@ const contactData = React.memo((props) => {
                 btnType="Success" 
                 disabled = {!formValidity}
             >
-                ORDER NOW
+                Order Now
             </Button>
         </form> 
     )
@@ -199,7 +203,14 @@ const contactData = React.memo((props) => {
 
     return(
         <div className = {classes.ContactData}>
-            <h3>Some details please...</h3>
+            {
+                purchased 
+                ? <Redirect to = "/" /> 
+                : null
+            }
+            <div className = {classes.Sidebar}>
+                <h3>Some details please...</h3>
+            </div>
             {form}
         </div>
     )
