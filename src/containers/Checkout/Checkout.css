@@ -43,7 +43,7 @@
 @media(max-width: 500px){
     .CheckoutSidebar{
        width: 100%;
-       height: 35%;
+       height: 45%;
        border-right: none;
        border-top: 2px solid var(--color-theme-dark);
        justify-content: space-around;
