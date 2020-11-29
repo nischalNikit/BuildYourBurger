@@ -211,9 +211,7 @@ const contactData = React.memo((props) => {
             <div className = {classes.Sidebar}>
                 <h3>Some details please...</h3>
             </div>
-            <div className = {classes.FormContainer}>
-                {form}      
-            </div>
+            {form}      
         </div>
     )
 });
