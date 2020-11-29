@@ -13,7 +13,8 @@
     border-right: 2px solid var(--color-theme-dark);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: 5rem;
     align-items: center;
 }
 

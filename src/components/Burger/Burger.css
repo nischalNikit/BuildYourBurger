@@ -1,5 +1,5 @@
 .Burger {
-    width: 100%;
+    width: 50%;
     margin: auto;
     height: 250px;
     margin-top: 2rem;
@@ -50,14 +50,7 @@
 
 @media(min-width: 800px){
     .Burger{
-        width: 550px;
-        height: 600px;
-    }
-}
-
-@media(min-width: 1000px){
-    .Burger{
-        width: 700px;
-        height: 600px;
+        width: 500px;
+        height: 550px;
     }
 }
