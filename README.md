@@ -43,3 +43,7 @@ Last Update : 12/8/2020
 1. Implement React Hooks throughout the application.
 2. useState(), useEffect() are being used in the hooks throughout the application.
 3. useDispatch(), useSelector() hooks are used in the  redux.
+
+Last Update : 27/11/2020 - 30/11/2020
+1. Implement new Layout for the desktop and mobile view using flexbox.
+2. Create a new route for contact form so it is not nested anymore in the checkout component.
