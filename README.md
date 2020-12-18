@@ -1,4 +1,4 @@
-# BurgerBuilder
+# Build Your Burger
 A React Application.
 
 This is a react application for a mock up of burger-making process. The complete details for the project are as follows.
