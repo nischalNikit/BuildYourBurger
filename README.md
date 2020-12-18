@@ -1,7 +1,7 @@
 # BurgerBuilder
 A React Application.
 
-This is a react application for a mock up of a food ordering application. The complete details for the project are as follows.
+This is a react application for a mock up of burger-making process. The complete details for the project are as follows.
 
 Technologies Used :-
 HTML5.
@@ -20,7 +20,7 @@ Download the zip folder OR clone this github repo.
 Use 'npm install npm-install' to download all the npm packages for compilation.
 Use 'npm run start' to run the compiler.
 Open the application at your local machine address.
-You can also use the 'https://buildyourbuger.netlify.app' to see the deployed version.
+You can also use the 'https://buildyourburger.netlify.app' to see the deployed version.
 
 HAPPY HACKING AND MORE UPDATES TO FOLLOW!
 
