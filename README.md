@@ -3,6 +3,9 @@ A React Application.
 
 This is a react application for a mock up of burger-making process. The complete details for the project are as follows.
 
+![Output sample](https://github.com/nischalNikit/BuildYourBurger/blob/master/public/assets/buildyourburger-desktop.gif)
+![Output sample](https://github.com/nischalNikit/BuildYourBurger/blob/master/public/assets/buildyourburger-phone.gif)
+
 Technologies Used :-
 - HTML5.
 - CSS3.
